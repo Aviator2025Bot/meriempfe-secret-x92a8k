@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pour Meriem ❤️</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #ffe6eb;
+    padding-top: 50px;
+    overflow: hidden;
+}
+
+h1 {
+    color: #ff4d6d;
+    padding: 10px;
+}
+
+img {
+    width: 260px;
+    border-radius: 15px;
+    margin: 20px;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 18px;
+    margin: 10px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#yesBtn {
+    background: #ff4d6d;
+    color: white;
+}
+
+#noBtn {
+    background: #4CAF50;
+    color: white;
+}
+
+/* Progress Bar */
+#progressContainer {
+    width: 70%;
+    background: #ddd;
+    border-radius: 20px;
+    margin: 20px auto;
+    display: none;
+}
+
+#progressBar {
+    width: 0%;
+    height: 25px;
+    background: #ff4d6d;
+    border-radius: 20px;
+    transition: width 0.3s;
+}
+
+/* Hearts */
+.heart {
+    position: fixed;
+    font-size: 25px;
+    animation: float 3s linear infinite;
+}
+
+@keyframes float {
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(-600px); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<h1 id="question">
+Meriem baghytni n3awed nroh n3ani m3a stage ta3k khtina yak? 🥲
+</h1>
+
+<img id="meme"
+src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfQmfONsccu6_VZEeLS6vNAt4spDRttzlHfg&s">
+
+<br>
+
+<button id="yesBtn">Oui 😈</button>
+<button id="noBtn">Non 😇</button>
+
+<div id="progressContainer">
+    <div id="progressBar"></div>
+</div>
+
+<script>
+let yesBtn = document.getElementById("yesBtn");
+let noBtn = document.getElementById("noBtn");
+let question = document.getElementById("question");
+let meme = document.getElementById("meme");
+let progressBar = document.getElementById("progressBar");
+let progressContainer = document.getElementById("progressContainer");
+
+let yesSize = 18;
+let noSize = 18;
+
+let messages = [
+    "Meriem raki sure? 🥲",
+    "Sure sure ? 😔 ",
+    "3awdi khami chwiya Meriem 😩",
+    "3lah rki dirili haka 😭",
+    "raki bghytni ntjrjr yak? 😭",
+    "sm3i kyna butona thta fiha non yak darbi fiha s3fni 😭",
+    "aya syi dhkna bzff darbi non brki mn tbhlil 😤"
+];
+
+let msgIndex = 0;
+
+yesBtn.onclick = function() {
+
+    question.innerText = messages[msgIndex % messages.length];
+    msgIndex++;
+
+    yesSize -= 2;
+    noSize += 4;
+
+    yesBtn.style.fontSize = yesSize + "px";
+    noBtn.style.fontSize = noSize + "px";
+
+    if (yesSize <= 5) {
+        yesBtn.style.display = "none";
+    }
+};
+
+noBtn.onclick = function() {
+
+    yesBtn.style.display = "none";
+    noBtn.style.display = "none";
+
+    question.innerText = "Calculating Meriem Kindness Level... ❤️";
+    progressContainer.style.display = "block";
+
+    let progress = 0;
+
+    let interval = setInterval(() => {
+        progress += 2;
+        progressBar.style.width = progress + "%";
+
+        if (progress >= 100) {
+            clearInterval(interval);
+
+            setTimeout(() => {
+                question.innerText = " 3lbli mtbghich 3liya meriem rabi yhfdk w ychafik 😭❤️ "
+                meme.src = "https://ih1.redbubble.net/image.581819854.3804/pp,504x498-pad,600x600,f8f8f8.u1.jpg";
+                heartsExplosion();
+            }, 500);
+        }
+
+    }, 40);
+};
+
+function heartsExplosion() {
+    setInterval(() => {
+        let heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.top = window.innerHeight + "px";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 3000);
+
+    }, 200);
+}
+</script>
+
+</body>
+</html>
